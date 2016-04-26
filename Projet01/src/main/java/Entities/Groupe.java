@@ -26,7 +26,7 @@ import javax.persistence.ManyToMany;
  * */
 @Entity
 public class Groupe implements Serializable{
-	/* attributs */
+	/* attributs de la classe Groupe */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long codeGroupe;

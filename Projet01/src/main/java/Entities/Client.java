@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Client {
 	
-	/*Attributs*/
+	/*attributs*/
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

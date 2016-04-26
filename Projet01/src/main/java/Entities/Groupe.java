@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import org.hibernate.annotations.GeneratorType;
 /*Auteur: Arnaud MARY
  * nom Projet: Projet01-groupe2
  *date : 26/04/2016

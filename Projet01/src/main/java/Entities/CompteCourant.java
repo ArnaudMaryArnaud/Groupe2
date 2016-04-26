@@ -18,7 +18,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("CC")
-public class CompteCourant extends Compte{
+public class CompteCourant extends Comptes{
 	/* attribut de la classe */
 	private double decouvert;
 	

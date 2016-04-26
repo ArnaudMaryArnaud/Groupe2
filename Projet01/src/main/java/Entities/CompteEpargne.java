@@ -6,7 +6,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("CE")
-public class CompteEpargne extends Compte{
+public class CompteEpargne extends Comptes{
 	/* attribut de la classe */
 	private double decouvert;
 	

@@ -27,7 +27,7 @@ import javax.persistence.InheritanceType;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType=DiscriminatorType.STRING)
-public class Compte {
+public class Comptes {
 	/* attributs */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -65,11 +65,11 @@ public class Compte {
 	}
 	
 	/* constructeurs */
-	public Compte(double solde, Date dateCreation) {
+	public Comptes(double solde, Date dateCreation) {
 		this.solde = solde;
 		this.dateCreation = dateCreation;
 	}
-	public Compte() {
+	public Comptes() {
 		
 	}
 	

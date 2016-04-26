@@ -18,7 +18,7 @@ import javax.persistence.ManyToMany;
  *Package: Entities
  *Class: Groupe
  *version:1.0
- *ref-UML: Groupes
+ *ref-UML: Groupe
  *sprint:1
  *ref-userStories: 4
  *association: ManytoMany avec Employe

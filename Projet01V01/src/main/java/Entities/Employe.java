@@ -36,6 +36,7 @@ public class Employe implements Serializable{
 	
 	//association avec Groupe
 	@ManyToMany(fetch=FetchType.LAZY, mappedBy="listemploye")
+	private List<Groupe> listegroupe = new ArrayList<Groupe>();
 	
 	//association avec Operation
 	@OneToMany(mappedBy="employe")

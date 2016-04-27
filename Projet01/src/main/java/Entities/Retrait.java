@@ -27,6 +27,11 @@ public class Retrait extends Operation{
 		super(dateOperation, montant);
 		// TODO Auto-generated constructor stub
 	}
+
+	public Retrait() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 

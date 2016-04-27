@@ -88,6 +88,8 @@ public abstract class Operation implements Serializable {
 		this.dateOperation = dateOperation;
 		this.montant = montant;
 	}
+	public Operation() {
+	}
 	
 	
 	

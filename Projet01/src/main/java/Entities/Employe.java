@@ -1,13 +1,20 @@
 package Entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 
-public class Employe {
+public class Employe implements Serializable{
 	/*Nom du projet : Projet01-groupe2
 	 * Auteur : Valérian THOMAS
 	 * Date : 26/04/2016
@@ -17,7 +24,7 @@ public class Employe {
 	 * Ref-UML : Employe
 	 * Sprint 1
 	 * Ref-userStories : 4
-	 * Association : Groupe(Many to many), Operation(Many to one), Compte(Many to one)
+	 * Association : Groupe(Many to many), Operation(One to many), Comptes(One to many)
 	 */
 	
 	
@@ -27,7 +34,25 @@ public class Employe {
 	private long CodeEmploye;
 	private String nomEmploye;
 	
+	
+	//association avec Groupe
+	@ManyToMany(fetch=FetchType.LAZY, mappedBy="listemploye")
+	
+	//association avec Operation
+	@OneToMany(mappedBy="employe")
+	private List<Operation> listeoperation = new ArrayList<Operation>();
+	
+	//association avec Comptes
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="employe")
+	
 	//getters and setters
+	
+	public List<Operation> getListeoperation() {
+		return listeoperation;
+	}
+	public void setListeoperation(List<Operation> listeoperation) {
+		this.listeoperation = listeoperation;
+	}
 	public long getCodeEmploye() {
 		return CodeEmploye;
 	}

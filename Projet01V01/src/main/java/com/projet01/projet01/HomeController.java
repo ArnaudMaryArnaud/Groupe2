@@ -1,15 +1,20 @@
 package com.projet01.projet01;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Date;
+
+import metier.InterfaceMetier;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import Entities.Clients;
+import Entities.Comptes;
+import Entities.Employe;
+import Entities.Groupe;
 
 /**
  * Handles requests for the application home page.
@@ -17,37 +22,94 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	private InterfaceMetier metier;
+	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	@RequestMapping(value = "/")
+	public String home(Model model) {
+	
+		
+		return "Compte";
+	}
 	@RequestMapping(value = "/Compte", method = RequestMethod.GET)
-	public String homeClient(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String homeCompte(Model model) {
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		model.addAttribute("comptes", metier.consultercompte());
 		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "Compte";
 	}
 	
+	@RequestMapping(value = "/addCompte", method = RequestMethod.GET)
+	public String addCompte(Model model, Comptes c, Long codeEmploye, Long codeClient) {
+		
+	
+		
+		metier.addcompte(c, codeEmploye, codeClient);
+		model.addAttribute("comptes", metier.consultercompte());
+		
+		
+		return "Compte";
+	}
+	
+	/* Retour de la vue employe contenant les données employe et groupe */
 	@RequestMapping(value = "/Employe", method = RequestMethod.GET)
-	public String homeEmploye(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+	public String homeEmploye(Model model) {
+		model.addAttribute("Employe", metier.consulteremployes());
+		model.addAttribute("Groupe", metier.consultergroupes());
 		return "Employe";
 	}
+	/* Ajout d'un employe */
+	@RequestMapping(value = "/insereremploye", method = RequestMethod.GET)
+	public String addEmploye(Model model, Employe e) {
+		metier.addemploye(e);
+		model.addAttribute("Employe", metier.consulteremployes());
+		model.addAttribute("Groupe", metier.consultergroupes());
+		return "Employe";
+	}
+	/* Ajout d'un groupe */
+	@RequestMapping(value = "/inserergroupe")
+	public String addGroupe(Model model, Groupe g) {
+		metier.addgroupe(g);
+		model.addAttribute("Groupe", metier.consultergroupes());
+		model.addAttribute("Employe", metier.consulteremployes());
+		return "Employe";
+	}
+	/* Ajout d'un employé à un groupe */
+	@RequestMapping(value = "/addemployegroupe")
+	public String addEmployeGroupe(Model model, Long codeGroupe, Long codeEmploye) {
+		metier.addemployetogroupe(codeEmploye, codeGroupe);
+		model.addAttribute("Groupe", metier.consultergroupes());
+		model.addAttribute("Employe", metier.consulteremployes());
+		return "Employe";
+	}
+	
+	@RequestMapping(value = "/rechercher", method = RequestMethod.GET)
+	public String ClientMC(Model model, String mc) {
+		
+		model.addAttribute("Client", metier.consulterclientmc(mc));
+	
+		return "Client";
+	}
+	@RequestMapping(value = "/Client", method = RequestMethod.GET)
+	public String homeClient(Model model) {
+	
+	
+		return "Client";
+	}
+	@RequestMapping(value="/ajouter", method=RequestMethod.GET)
+	public String addclient(Model model, Clients c){
+		
+		metier.addclient(c);
+		model.addAttribute("Client", metier.consulterclientmc(""));
+		
+		return "Client";
+	}
+	
+	
 	
 }

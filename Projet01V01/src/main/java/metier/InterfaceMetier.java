@@ -28,18 +28,18 @@ public interface InterfaceMetier {
 	public Employe addemploye(Employe e);
 	public Clients addclient(Clients c);
 	public Groupe addgroupe(Groupe g);
-	public Groupe addemployetogroupe(Employe e, long codeGroupe);
-	public Comptes addcompte(Comptes c, long codeEmploye, long codeClient);
-	public Operation addoperation(Operation o, long codeEmploye, long numCompte); // méthode uniquement metier
+	public Groupe addemployetogroupe(Long codeEmploye, Long codeGroupe);
+	public Comptes addcompte(Comptes c, Long codeEmploye, Long codeClient);
+	public Operation addoperation(Operation o, Long codeEmploye, Long numCompte); // méthode uniquement metier
 	public List<Comptes> consultercompte();
-	public List<Comptes> consultercompteclient(long codeClient);
-	public List<Comptes> consultercompteemploye(long codeEmploye);
+	public List<Comptes> consultercompteclient(Long codeClient);
+	public List<Comptes> consultercompteemploye(Long codeEmploye);
 	public List<Employe> consulteremployes();
 	public List<Groupe> consultergroupes();
-	public List<Employe> consulteremployesgroupe(long codeGroupe);
+	public List<Employe> consulteremployesgroupe(Long codeGroupe);
 	public List<Clients> consulterclientmc(String mc);
-	public Operation effectuerversement(double montant, long numCompte, long codeEmploye); // méthode uniquement metier
-	public Operation effectuerretrait(double montant, long numCompte, long codeEmploye); // méthode uniquement metier
-	public void effectuervirement(double montant, long compteRetrait, long compteVersement, long codeEmploye); // méthode uniquement metier
+	public Operation effectuerversement(double montant, Long numCompte, Long codeEmploye); // méthode uniquement metier
+	public Operation effectuerretrait(double montant, Long numCompte, Long codeEmploye); // méthode uniquement metier
+	public void effectuervirement(double montant, Long compteRetrait, Long compteVersement, Long codeEmploye); // méthode uniquement metier
 
 }

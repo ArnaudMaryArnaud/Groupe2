@@ -24,14 +24,14 @@ public interface InterfaceDao {
 	public Employe addemploye(Employe e);
 	public Clients addclient(Clients c);
 	public Groupe addgroupe(Groupe g);
-	public Groupe addemployetogroupe(Employe e, long codeGroupe);
-	public Comptes addcompte(Comptes c, long codeEmploye, long codeClient);
+	public Groupe addemployetogroupe(Long codeEmploye, Long codeGroupe);
+	public Comptes addcompte(Comptes c, Long codeEmploye, Long codeClient);
 	public List<Comptes> consultercompte();
-	public List<Comptes> consultercompteclient(long codeClient);
-	public List<Comptes> consultercompteemploye(long codeEmploye);
+	public List<Comptes> consultercompteclient(Long codeClient);
+	public List<Comptes> consultercompteemploye(Long codeEmploye);
 	public List<Employe> consulteremployes();
 	public List<Groupe> consultergroupes();
-	public List<Employe> consulteremployesgroupe(long codeGroupe);
+	public List<Employe> consulteremployesgroupe(Long codeGroupe);
 	public List<Clients> consulterclientmc(String mc);
 	
 }

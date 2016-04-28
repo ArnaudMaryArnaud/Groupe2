@@ -51,16 +51,17 @@ public class ImplDao implements InterfaceDao {
 	}
 
 	@Override
-	public Groupe addemployetogroupe(Employe e, long codeGroupe) {
+	public Groupe addemployetogroupe(Long codeEmploye, Long codeGroupe) {
 		/* methode qui ajoute un employé à un groupe */
 		Groupe g = em.find(Groupe.class, codeGroupe);
+		Employe e = em.find(Employe.class, codeEmploye);
 		g.getListemploye().add(e);
 		e.getListegroupe().add(g);
 		return g;
 	}
 
 	@Override
-	public Comptes addcompte(Comptes c, long codeEmploye, long codeClient) {
+	public Comptes addcompte(Comptes c, Long codeEmploye, Long codeClient) {
 		/* methode qui ajoute un compte à la database */
 		Employe e = em.find(Employe.class, codeEmploye);
 		Clients cl = em.find(Clients.class, codeClient);
@@ -82,7 +83,7 @@ public class ImplDao implements InterfaceDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Comptes> consultercompteclient(long codeClient) {
+	public List<Comptes> consultercompteclient(Long codeClient) {
 		/* methode qui permet de consulter les comptes d'un client */
 		Query query = em.createQuery("from Comptes c where c.client = "
 				+ codeClient);
@@ -91,7 +92,7 @@ public class ImplDao implements InterfaceDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Comptes> consultercompteemploye(long codeEmploye) {
+	public List<Comptes> consultercompteemploye(Long codeEmploye) {
 		/* méthode qui permet de consulter l'ensemble des comptes créé par un employé */
 		Query query = em.createQuery("from Comptes c where c.employe = "
 				+ codeEmploye);
@@ -116,7 +117,7 @@ public class ImplDao implements InterfaceDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Employe> consulteremployesgroupe(long codeGroupe) {
+	public List<Employe> consulteremployesgroupe(Long codeGroupe) {
 		/* méthode qui permet de consulter l'ensemble des employés d'un même groupe */
 		//Query query = em.createQuery("from Employe e inner join Groupe_Employe g on e.CodeEmploye=g.employe where g.groupe = "+codeGroupe);
 		Query query = em.createQuery("Select g.listemploye from Groupe g where g.codeGroupe = "+codeGroupe);

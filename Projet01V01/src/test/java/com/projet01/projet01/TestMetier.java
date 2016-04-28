@@ -75,7 +75,7 @@ public class TestMetier {
 		Groupe g= new Groupe("GroupeTest");
 		metier.addemploye(e);
 		metier.addgroupe(g);
-		metier.addemployetogroupe(e, g.getCodeGroupe());
+		metier.addemployetogroupe(e.getCodeEmploye(), g.getCodeGroupe());
 		assertNotNull(g.getListemploye().size()>0);
 	}
 
@@ -163,7 +163,17 @@ public class TestMetier {
 
 	@Test
 	public void testEffectuervirement() {
-		fail("Not yet implemented");
+		Comptes c1=new Comptes(50, new Date());
+		Comptes c2=new Comptes(60, new Date());
+		Employe e=new Employe("dédé");
+		Clients cl=new Clients("nn", "pp", new Date(), "11111");
+		metier.addclient(cl);
+		metier.addemploye(e);
+		metier.addcompte(c1, e.getCodeEmploye(), cl.getCodeClient());
+		metier.addcompte(c2, e.getCodeEmploye(), cl.getCodeClient());
+		metier.effectuervirement(5, c1.getNumCompte(), c2.getNumCompte(), e.getCodeEmploye());
+		assertNotNull(c1.getSolde());
+		assertNotNull(c2.getSolde());
 	}
 
 }

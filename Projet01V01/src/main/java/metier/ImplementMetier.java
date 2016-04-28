@@ -67,25 +67,25 @@ public class ImplementMetier implements InterfaceMetier {
 	}
 
 	@Override
-	public Groupe addemployetogroupe(Employe e, long codeGroupe) {
-		return dao.addemployetogroupe(e, codeGroupe);
+	public Groupe addemployetogroupe(Long codeEmploye, Long codeGroupe) {
+		return dao.addemployetogroupe(codeEmploye, codeGroupe);
 	}
 
 	@Override
-	public Comptes addcompte(Comptes c, long codeEmploye, long codeClient) {
+	public Comptes addcompte(Comptes c, Long codeEmploye, Long codeClient) {
 		return dao.addcompte(c,codeEmploye, codeClient);
 	}
 
 	@Override
-	public Operation addoperation(Operation o, long codeEmploye, long numCompte) {
+	public Operation addoperation(Operation o, Long codeEmploye, Long numCompte) {
 		/* methode qui ajoute une opération à la database */
 		Employe e = em.find(Employe.class, codeEmploye);
 		Comptes c = em.find(Comptes.class, numCompte);
-		e.getListeoperation().add(o);
-		c.getListoperation().add(o);
 		o.setEmploye(e);
 		o.setCompte(c);
 		em.persist(o);
+		e.getListeoperation().add(o);
+		c.getListoperation().add(o);
 		return o;
 	}
 
@@ -95,12 +95,12 @@ public class ImplementMetier implements InterfaceMetier {
 	}
 
 	@Override
-	public List<Comptes> consultercompteclient(long codeClient) {
+	public List<Comptes> consultercompteclient(Long codeClient) {
 		return dao.consultercompteclient(codeClient);
 	}
 
 	@Override
-	public List<Comptes> consultercompteemploye(long codeEmploye) {
+	public List<Comptes> consultercompteemploye(Long codeEmploye) {
 		return dao.consultercompteemploye(codeEmploye);
 	}
 
@@ -115,7 +115,7 @@ public class ImplementMetier implements InterfaceMetier {
 	}
 
 	@Override
-	public List<Employe> consulteremployesgroupe(long codeGroupe) {
+	public List<Employe> consulteremployesgroupe(Long codeGroupe) {
 		return dao.consulteremployesgroupe(codeGroupe);
 	}
 
@@ -125,7 +125,7 @@ public class ImplementMetier implements InterfaceMetier {
 	}
 
 	@Override
-	public Operation effectuerversement(double montant, long numCompte, long codeEmploye) {
+	public Operation effectuerversement(double montant, Long numCompte, Long codeEmploye) {
 		/* méthode qui permet d'effectuer un versement sur un compte*/
 		Comptes c = em.find(Comptes.class, numCompte);
 		c.setSolde(c.getSolde()+montant);
@@ -135,7 +135,7 @@ public class ImplementMetier implements InterfaceMetier {
 	}
 
 	@Override
-	public Operation effectuerretrait(double montant, long numCompte, long codeEmploye) {
+	public Operation effectuerretrait(double montant, Long numCompte, Long codeEmploye) {
 		/* méthode qui permet d'effectuer un retrait sur un compte */
 		Comptes c = em.find(Comptes.class, numCompte);
 		c.setSolde(c.getSolde()-montant);
@@ -145,8 +145,8 @@ public class ImplementMetier implements InterfaceMetier {
 	}
 
 	@Override
-	public void effectuervirement(double montant, long compteRetrait,
-			long compteVersement, long codeEmploye) {
+	public void effectuervirement(double montant, Long compteRetrait,
+			Long compteVersement, Long codeEmploye) {
 			/* méthode qui permet d'effectuer un virement d'un compte à un autre */
 		/*on va créer un retrait sur le premier compte et un versement sur le deuxième */
 		effectuerretrait(montant, compteRetrait, codeEmploye);

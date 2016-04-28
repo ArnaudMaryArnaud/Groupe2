@@ -9,6 +9,10 @@
 </head>
 <body>
 
+	<p>
+	Consultation des comptes.
+	<p>
+	
 	<table>
 		<tr>
 			<td>Numéro de compte</td>
@@ -35,7 +39,7 @@
 	</table>
 
 
-	<a href="Employe">go to page Employés</a>
+	<a href="Employe">Go To Employes</a>
 
 </body>
 </html>

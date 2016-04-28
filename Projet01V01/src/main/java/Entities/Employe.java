@@ -38,6 +38,12 @@ public class Employe implements Serializable{
 	@ManyToMany(fetch=FetchType.LAZY, mappedBy="listemploye")
 	private List<Groupe> listegroupe = new ArrayList<Groupe>();
 	
+	public List<Groupe> getListegroupe() {
+		return listegroupe;
+	}
+	public void setListegroupe(List<Groupe> listegroupe) {
+		this.listegroupe = listegroupe;
+	}
 	//association avec Operation
 	@OneToMany(mappedBy="employe")
 	private List<Operation> listeoperation = new ArrayList<Operation>();

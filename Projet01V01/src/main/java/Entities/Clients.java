@@ -55,8 +55,22 @@ public class Clients {
 	
 	/*Getters et Setters*/
 	
+	
+	
 	public String getNomClient() {
 		return nomClient;
+	}
+	public Long getCodeClient() {
+		return codeClient;
+	}
+	public void setCodeClient(Long codeClient) {
+		this.codeClient = codeClient;
+	}
+	public List<Comptes> getListcompte() {
+		return listcompte;
+	}
+	public void setListcompte(List<Comptes> listcompte) {
+		this.listcompte = listcompte;
 	}
 	public void setNomClient(String nomClient) {
 		this.nomClient = nomClient;
@@ -91,6 +105,11 @@ public class Clients {
 		this.dateNaissance = dateNaissance;
 		this.codePostal = codePostal;
 	}
+	public Clients() {
+		super();
+	}
+	
+	
 	
 	
 	

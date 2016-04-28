@@ -36,8 +36,16 @@ public class Groupe implements Serializable{
 	private List<Employe> listemploye = new ArrayList<Employe>();
 		
 	/* getter et setters */
+	
+	
 	public String getNomGroupe() {
 		return nomGroupe;
+	}
+	public Long getCodeGroupe() {
+		return codeGroupe;
+	}
+	public void setCodeGroupe(Long codeGroupe) {
+		this.codeGroupe = codeGroupe;
 	}
 	public void setNomGroupe(String nomGroupe) {
 		this.nomGroupe = nomGroupe;

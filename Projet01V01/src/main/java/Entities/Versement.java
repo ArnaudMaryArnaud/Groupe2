@@ -2,6 +2,7 @@ package Entities;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 /*Auteur: Henriette Sabrina
@@ -18,12 +19,18 @@ import javax.persistence.Entity;
  * */
 
 @Entity
+@DiscriminatorValue("Versement")
 public class Versement extends Operation{
 	
 	/*Constructeur*/
 
 	public Versement(Date dateOperation, double montant) {
 		super(dateOperation, montant);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Versement() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 	

@@ -55,28 +55,36 @@ public class ImplDao implements InterfaceDao {
 		/* methode qui ajoute un employé à un groupe */
 		Groupe g = em.find(Groupe.class, codeGroupe);
 		g.getListemploye().add(e);
+		e.getListegroupe().add(g);
 		return g;
 	}
 
 	@Override
-	public Comptes addcompte(Comptes c) {
+	public Comptes addcompte(Comptes c, long codeEmploye, long codeClient) {
 		/* methode qui ajoute un compte à la database */
+		Employe e = em.find(Employe.class, codeEmploye);
+		Clients cl = em.find(Clients.class, codeClient);
+		c.setEmploye(e);
+		c.setClient(cl);
 		em.persist(c);
+		e.getComptes().add(c);  //Association Employé - Comptes
+		cl.getListcompte().add(c); //Association Clients - Comptes
 		return c;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Comptes consultercompte(long numCompte) {
-		/* methode qui permet de consulter un compte à partir de son numéro de compte */
-		Comptes c = em.find(Comptes.class, numCompte);
-		return c;
+	public List<Comptes> consultercompte() {
+		/* methode qui permet de consulter l'ensemble des comptes */
+		Query query = em.createQuery("from Comptes c ");
+		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Comptes> consultercompteclient(long codeClient) {
 		/* methode qui permet de consulter les comptes d'un client */
-		Query query = em.createQuery("from comptes c where c.codeClient = "
+		Query query = em.createQuery("from Comptes c where c.client = "
 				+ codeClient);
 		return query.getResultList();
 	}
@@ -85,7 +93,7 @@ public class ImplDao implements InterfaceDao {
 	@Override
 	public List<Comptes> consultercompteemploye(long codeEmploye) {
 		/* méthode qui permet de consulter l'ensemble des comptes créé par un employé */
-		Query query = em.createQuery("from comptes c where c.codeEmploye = "
+		Query query = em.createQuery("from Comptes c where c.employe = "
 				+ codeEmploye);
 		return query.getResultList();
 	}
@@ -94,7 +102,7 @@ public class ImplDao implements InterfaceDao {
 	@Override
 	public List<Employe> consulteremployes() {
 		/* méthode qui permet de consulter l'ensemble des employés */
-		Query query = em.createQuery("from employe e");
+		Query query = em.createQuery("from Employe e");
 		return query.getResultList();
 	}
 
@@ -102,7 +110,7 @@ public class ImplDao implements InterfaceDao {
 	@Override
 	public List<Groupe> consultergroupes() {
 		/* méthode qui permet de consulter l'ensemble des groupes */
-		Query query = em.createQuery("from groupe g");
+		Query query = em.createQuery("from Groupe g");
 		return query.getResultList();
 	}
 
@@ -110,7 +118,8 @@ public class ImplDao implements InterfaceDao {
 	@Override
 	public List<Employe> consulteremployesgroupe(long codeGroupe) {
 		/* méthode qui permet de consulter l'ensemble des employés d'un même groupe */
-		Query query = em.createQuery("from Employe e where e.groupe = "+codeGroupe);
+		//Query query = em.createQuery("from Employe e inner join Groupe_Employe g on e.CodeEmploye=g.employe where g.groupe = "+codeGroupe);
+		Query query = em.createQuery("Select g.listemploye from Groupe g where g.codeGroupe = "+codeGroupe);
 		return query.getResultList();
 	}
 
@@ -118,7 +127,7 @@ public class ImplDao implements InterfaceDao {
 	@Override
 	public List<Clients> consulterclientmc(String mc) {
 		/* méthode qui permet de rechercher dans la liste des clients les clients dont le nom commence par un mot clé */
-		Query query = em.createQuery("from clients c where c.nomClient like '%"+mc);
+		Query query = em.createQuery("from Clients c where c.nomClient like '%"+mc+"'");
 		return query.getResultList();
 	}
 

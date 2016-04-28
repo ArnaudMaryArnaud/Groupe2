@@ -50,8 +50,22 @@ public class Comptes implements Serializable{
 	
 	
 	/* getter and setters */
+	
+	
 	public double getSolde() {
 		return solde;
+	}
+	public Long getNumCompte() {
+		return numCompte;
+	}
+	public void setNumCompte(Long numCompte) {
+		this.numCompte = numCompte;
+	}
+	public Clients getClient() {
+		return client;
+	}
+	public void setClient(Clients client) {
+		this.client = client;
 	}
 	public void setSolde(double solde) {
 		this.solde = solde;

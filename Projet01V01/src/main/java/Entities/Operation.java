@@ -6,11 +6,21 @@ import java.util.Date;
 
 
 
+
+
+
+
+
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
 /*Auteur: Henriette Sabrina
@@ -28,10 +38,18 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
-public abstract class Operation implements Serializable {
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType=DiscriminatorType.STRING)
+public class Operation implements Serializable {
 	
 	/*Attributs*/
 	
+	public Operation() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long numOperation;

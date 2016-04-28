@@ -72,20 +72,26 @@ public class ImplementMetier implements InterfaceMetier {
 	}
 
 	@Override
-	public Comptes addcompte(Comptes c) {
-		return dao.addcompte(c);
+	public Comptes addcompte(Comptes c, long codeEmploye, long codeClient) {
+		return dao.addcompte(c,codeEmploye, codeClient);
 	}
 
 	@Override
-	public Operation addoperation(Operation o) {
+	public Operation addoperation(Operation o, long codeEmploye, long numCompte) {
 		/* methode qui ajoute une opération à la database */
+		Employe e = em.find(Employe.class, codeEmploye);
+		Comptes c = em.find(Comptes.class, numCompte);
+		e.getListeoperation().add(o);
+		c.getListoperation().add(o);
+		o.setEmploye(e);
+		o.setCompte(c);
 		em.persist(o);
 		return o;
 	}
 
 	@Override
-	public Comptes consultercompte(long numCompte) {
-		return dao.consultercompte(numCompte);
+	public List<Comptes> consultercompte() {
+		return dao.consultercompte();
 	}
 
 	@Override
@@ -119,32 +125,35 @@ public class ImplementMetier implements InterfaceMetier {
 	}
 
 	@Override
-	public void effectuerversement(Versement v, long numCompte) {
+	public Operation effectuerversement(double montant, long numCompte, long codeEmploye) {
 		/* méthode qui permet d'effectuer un versement sur un compte*/
 		Comptes c = em.find(Comptes.class, numCompte);
-		c.setSolde(c.getSolde()+v.getMontant());
-		em.merge(c);
+		c.setSolde(c.getSolde()+montant);
+		Operation v = new Versement(new Date(), montant);
+		addoperation(v, codeEmploye, numCompte);
+		return v;
 	}
 
 	@Override
-	public void effectuerretrait(Retrait r, long numCompte) {
+	public Operation effectuerretrait(double montant, long numCompte, long codeEmploye) {
 		/* méthode qui permet d'effectuer un retrait sur un compte */
 		Comptes c = em.find(Comptes.class, numCompte);
-		c.setSolde(c.getSolde()-r.getMontant());
-		em.merge(c);
+		c.setSolde(c.getSolde()-montant);
+		Operation r = new Retrait(new Date(),montant);
+		addoperation(r, codeEmploye, numCompte);
+		return r;
 	}
 
 	@Override
 	public void effectuervirement(double montant, long compteRetrait,
+			long compteVersement, long codeEmploye) {
 			/* méthode qui permet d'effectuer un virement d'un compte à un autre */
-			long compteVersement) {
 		/*on va créer un retrait sur le premier compte et un versement sur le deuxième */
-		Retrait r = new Retrait(new Date(), montant);
-		Versement v = new Versement(new Date(), montant);
-		effectuerretrait(r, compteRetrait);
-		effectuerversement(v, compteVersement);
+		effectuerretrait(montant, compteRetrait, codeEmploye);
+		effectuerversement(montant, compteVersement, codeEmploye);
 	}
 	
 	
 
 }
+

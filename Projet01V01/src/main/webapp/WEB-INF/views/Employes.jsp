@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix = "f"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,15 +61,15 @@
 						<div class="col-lg-6">
 							<!-- Formulaire d'ajout d'un employé -->
 							<h2>Création d'un employé</h2>
-							<form class="form-inline" action="insereremploye" method="get">
+							<f:form class="form-inline" action="insereremploye" method="get" modelAttribute="model">
 								<div class="form-group">
-									<label for="nom">Nom</label> <input type="text"
-										class="form-control" id="nom" name="nomEmploye"
-										placeholder="SMITH">
+									<label for="nom">Nom</label> <f:input type="text"
+										class="form-control" id="nom" path="nomEmploye"
+										placeholder="SMITH"></f:input>
 								</div>
-								<button type="submit" class="btn btn-success">Créer
-									nouvel employé</button>
-							</form>
+								<button type="submit" class="btn btn-success">Créer	nouvel employé</button>
+							<f:errors path="nomEmploye"></f:errors>
+							</f:form>
 						</div>
 						<!-- Formulaire d'ajout d'un employé à un groupe -->
 						<div class="col-lg-6">
@@ -93,7 +94,7 @@
 						</div>
 					</div>
 					<h2>Liste des employés</h2>
-					<table class="table table-striped, table-responsive">
+					<table class="table table-striped">
 						<th class="success">Code Employe</th>
 						<th class="success">Nom Employe</th>
 						<c:forEach items="${Employe}" var="e">
@@ -111,7 +112,7 @@
 							<c:forEach items="${Employe}" var="em">
 								<option value="${em.codeEmploye}">${em.nomEmploye}</option>
 							</c:forEach>
-						</select> <input type="submit" value="rechercher" />
+						</select> <button type="submit" class="btn btn-success">Rechercher</button>
 					</form>
 					<table class="table table-striped">
 						<tr class="success">
@@ -184,7 +185,7 @@
 								<c:forEach items="${Groupe}" var="g">
 									<option value="${g.codeGroupe}">${g.nomGroupe}</option>
 								</c:forEach>
-							</select> <input type="submit" value="rechercher" />
+							</select>  <button type="submit" class="btn btn-info">Rechercher</button>
 						</form>
 						<table class="table table-striped">
 							<th class="info">Code employe</th>

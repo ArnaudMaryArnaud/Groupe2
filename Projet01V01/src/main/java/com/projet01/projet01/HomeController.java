@@ -87,6 +87,23 @@ public class HomeController {
 		model.addAttribute("Employe", metier.consulteremployes());
 		return "Employe";
 	}
+	/* Afficher les employés d'un groupe */
+	@RequestMapping(value = "/employedugroupe")
+	public String employedugroupe(Model model, Long codeGroupe) {
+		model.addAttribute("Groupe", metier.consultergroupes());
+		model.addAttribute("Employe", metier.consulteremployes());
+		model.addAttribute("EmployeGroupe", metier.consulteremployesgroupe(codeGroupe));
+		return "Employe";
+	}
+	/* Afficher les comptes créés par un employé */
+	@RequestMapping(value = "/affichercompteEmp")
+	public String compteEmploye(Model model, Long codeEmploye) {
+		model.addAttribute("Groupe", metier.consultergroupes());
+		model.addAttribute("Employe", metier.consulteremployes());
+		model.addAttribute("Comptes", metier.consultercompteemploye(codeEmploye));
+		return "Employe";
+	}
+	
 	
 	@RequestMapping(value = "/rechercher", method = RequestMethod.GET)
 	public String ClientMC(Model model, String mc) {

@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix = "f"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
 </head>
 <body>
 	<!-- Barre de navigation -->
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -30,6 +30,10 @@
 					<li class=active><a href="Employe">Employe <span
 							class="sr-only">(current)</span></a></li>
 					<li><a href="Client">Client</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="j_spring_security_logout">Déconnexion</a></li>
+				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
@@ -61,14 +65,16 @@
 						<div class="col-lg-6">
 							<!-- Formulaire d'ajout d'un employé -->
 							<h2>Création d'un employé</h2>
-							<f:form class="form-inline" action="insereremploye" method="get" modelAttribute="model">
+							<f:form class="form-inline" action="insereremploye" method="get"
+								modelAttribute="model">
 								<div class="form-group">
-									<label for="nom">Nom</label> <f:input type="text"
-										class="form-control" id="nom" path="nomEmploye"
-										placeholder="SMITH"></f:input>
+									<label for="nom">Nom</label>
+									<f:input type="text" class="form-control" id="nom"
+										path="nomEmploye" placeholder="SMITH"></f:input>
 								</div>
-								<button type="submit" class="btn btn-success">Créer	nouvel employé</button>
-							<f:errors path="nomEmploye"></f:errors>
+								<button type="submit" class="btn btn-success">Créer
+									nouvel employé</button>
+								<f:errors path="nomEmploye"></f:errors>
 							</f:form>
 						</div>
 						<!-- Formulaire d'ajout d'un employé à un groupe -->
@@ -112,7 +118,8 @@
 							<c:forEach items="${Employe}" var="em">
 								<option value="${em.codeEmploye}">${em.nomEmploye}</option>
 							</c:forEach>
-						</select> <button type="submit" class="btn btn-success">Rechercher</button>
+						</select>
+						<button type="submit" class="btn btn-success">Rechercher</button>
 					</form>
 					<table class="table table-striped">
 						<tr class="success">
@@ -185,7 +192,8 @@
 								<c:forEach items="${Groupe}" var="g">
 									<option value="${g.codeGroupe}">${g.nomGroupe}</option>
 								</c:forEach>
-							</select>  <button type="submit" class="btn btn-info">Rechercher</button>
+							</select>
+							<button type="submit" class="btn btn-info">Rechercher</button>
 						</form>
 						<table class="table table-striped">
 							<th class="info">Code employe</th>

@@ -15,7 +15,7 @@
 </head>
 <body>
 	<!-- Barre de navigation -->
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -30,6 +30,7 @@
 					<li class=active><a href="Employe">Employe <span
 							class="sr-only">(current)</span></a></li>
 					<li><a href="Client">Client</a></li>
+					<li><a href="j_spring_security_logout">Déconnexion</a></li>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>

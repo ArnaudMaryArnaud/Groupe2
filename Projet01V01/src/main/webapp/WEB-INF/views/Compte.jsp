@@ -16,7 +16,7 @@ Date: 28/04/2106 -->
 </head>
 <body>
 
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse">
 	<div class="container-fluname">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -31,6 +31,10 @@ Date: 28/04/2106 -->
 						class="sr-only">(current)</span></a></li>
 				<li><a href="Employe">Employe</a></li>
 				<li><a href="Client">Client</a></li>
+				</ul>
+			<ul class="nav navbar-nav navbar-right">
+					<li><a href="j_spring_security_logout">Déconnexion</a></li>
+				</ul>
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
@@ -91,7 +95,7 @@ Date: 28/04/2106 -->
 
 
 		<p class="text-center">
-			<label for="date">Date de création</label> <input type="text"
+			<label for="date">Date de création</label> <input type="date"
 				name="dateCreation" />
 		</p>
 
@@ -118,12 +122,13 @@ Date: 28/04/2106 -->
 			<button type="submit" class="btn btn-warning">Ajouter
 				nouveau compte</button>
 		</p>
-		
-		</form>
 
-		</br> </br>
-		
-		<div class = "row">
+	</form>
+
+	</br>
+	</br>
+
+	<div class="row">
 
 
 		<h1>
@@ -135,102 +140,105 @@ Date: 28/04/2106 -->
 
 
 		<!-- Formulaire pour effectuer un retrait -->
-		
+
 		<form action="effectuerRetrait" method="get">
-		
-        <div class= "col-lg-6">
 
-		<h2>
+			<div class="col-lg-6">
 
-			<p class="text-center">Effectuer un retrait
-			<p>
-		</h2>
+				<h2>
 
-		</br>
+					<p class="text-center">Effectuer un retrait
+					<p>
+				</h2>
 
-		<p class="text-center">
-			<label for="montant">Montant à retirer</label> <input type="text"
-				name="montant" />
-		</p>
+				</br>
 
-
-
-		<p class="text-center">
-			<label for="compte">Compte</label> <input type="text" name="numCompte" />
-		</p>
+				<p class="text-center">
+					<label for="montant">Montant à retirer</label> <input type="text"
+						name="montant" />
+				</p>
 
 
-		<p class="text-center">
-			<label for="employe">Employé</label> <input type="text"
-				name="codeEmploye" />
-		</p>
 
-		</br>
+				<p class="text-center">
+					<label for="compte">Compte</label> <input type="text"
+						name="numCompte" />
+				</p>
 
 
-		<p class="text-center">
-			<button type="submit" class="btn btn-danger">Faire le
-				retrait</button>
-		</p>
-		
-		</div>
-		
+				<p class="text-center">
+					<label for="employe">Employé</label> <input type="text"
+						name="codeEmploye" />
+				</p>
+
+				</br>
+
+
+				<p class="text-center">
+					<button type="submit" class="btn btn-danger">Faire le
+						retrait</button>
+				</p>
+
+			</div>
+
 		</form>
 
 
 
 		<!-- Formulaire pour effectuer un versement -->
-		
+
 		<form action="effectuerVersement" method="get">
-		
-		<div class= "col-lg-6">
 
-		<h2>
+			<div class="col-lg-6">
 
-			<p class="text-center">Effectuer un versement
-			<p>
-		</h2>
+				<h2>
 
-		</br>
+					<p class="text-center">Effectuer un versement
+					<p>
+				</h2>
 
-		<p class="text-center">
-			<label for="montant">Montant à verser</label> <input type="text"
-				name="montant" />
-		</p>
+				</br>
 
-
-
-		<p class="text-center">
-			<label for="compte">Compte</label> <input type="text" name="numCompte" />
-		</p>
+				<p class="text-center">
+					<label for="montant">Montant à verser</label> <input type="text"
+						name="montant" />
+				</p>
 
 
-		<p class="text-center">
-			<label for="employe">Employé</label> <input type="text"
-				name="codeEmploye" />
-		</p>
 
-		</br>
+				<p class="text-center">
+					<label for="compte">Compte</label> <input type="text"
+						name="numCompte" />
+				</p>
 
 
-		<p class="text-center">
-			<button type="submit" class="btn btn-danger">Faire le
-				versement</button>
-		</p>
-		
-		</div>
-		
+				<p class="text-center">
+					<label for="employe">Employé</label> <input type="text"
+						name="codeEmploye" />
+				</p>
+
+				</br>
+
+
+				<p class="text-center">
+					<button type="submit" class="btn btn-danger">Faire le
+						versement</button>
+				</p>
+
+			</div>
+
 		</form>
-		
-		</div>
 
-		</br> </br>
-		
-		
-		<!-- Formulaire pour effectuer un virement -->
-		
-		<form action="effectuerVirement" method="get">
-		
+	</div>
+
+	</br>
+	</br>
+
+
+	<!-- Formulaire pour effectuer un virement -->
+
+	<form action="effectuerVirement" method="get">
+
 		<h2>
 
 			<p class="text-center">Effectuer un virement
@@ -247,7 +255,8 @@ Date: 28/04/2106 -->
 
 
 		<p class="text-center">
-			<label for="compte1">Compte à débiter</label> <input type="text" name="compteRetrait" />
+			<label for="compte1">Compte à débiter</label> <input type="text"
+				name="compteRetrait" />
 		</p>
 
 
@@ -255,7 +264,7 @@ Date: 28/04/2106 -->
 			<label for="compte2">Compte à créditer</label> <input type="text"
 				name="compteVersement" />
 		</p>
-		
+
 		<p class="text-center">
 			<label for="employe">Employé</label> <input type="text"
 				name="codeEmploye" />
@@ -268,17 +277,17 @@ Date: 28/04/2106 -->
 			<button type="submit" class="btn btn-danger">Faire le
 				virement</button>
 		</p>
-		
-		</form>
-		
-		</br>
-		</br>
+
+	</form>
+
+	</br>
+	</br>
 
 
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.js"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
 	</form>

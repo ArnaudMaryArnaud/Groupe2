@@ -37,7 +37,7 @@ public interface InterfaceMetier {
 	public List<Employe> consulteremployes();
 	public List<Groupe> consultergroupes();
 	public List<Employe> consulteremployesgroupe(Long codeGroupe);
-	public List<Clients> consulterclientmc(String mc);
+	public List<Clients> consulterclientmc(String mc) throws Exception;
 	public Operation effectuerversement(double montant, Long numCompte, Long codeEmploye); // méthode uniquement metier
 	public Operation effectuerretrait(double montant, Long numCompte, Long codeEmploye); // méthode uniquement metier
 	public void effectuervirement(double montant, Long compteRetrait, Long compteVersement, Long codeEmploye); // méthode uniquement metier

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 
+
 import dao.InterfaceDao;
 import Entities.Clients;
 import Entities.Comptes;
@@ -120,7 +121,7 @@ public class ImplementMetier implements InterfaceMetier {
 	}
 
 	@Override
-	public List<Clients> consulterclientmc(String mc) {
+	public List<Clients> consulterclientmc(String mc) throws Exception {
 		return dao.consulterclientmc(mc);
 	}
 

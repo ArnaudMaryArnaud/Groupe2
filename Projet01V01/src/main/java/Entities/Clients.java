@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /*Auteur: Henriette Sabrina
  * nom: Projet01-groupe2
@@ -53,10 +54,19 @@ public class Clients {
 	private List<Comptes> listcompte = new ArrayList<Comptes>();
 	
 	
+	@Transient
+	private String exception;
+	
 	/*Getters et Setters*/
 	
 	
 	
+	public String getException() {
+		return exception;
+	}
+	public void setException(String exception) {
+		this.exception = exception;
+	}
 	public String getNomClient() {
 		return nomClient;
 	}

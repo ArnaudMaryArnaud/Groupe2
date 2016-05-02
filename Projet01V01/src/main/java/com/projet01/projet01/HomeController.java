@@ -171,8 +171,15 @@ public class HomeController {
 	// Afficher les comptes par client
 	@RequestMapping(value = "/affichercompteCli")
 	public String compteClient(Model model, Long codeClient) {
-		model.addAttribute("Client", metier.consulterclientmc(""));
-		model.addAttribute("Comptes", metier.consultercompteclient(codeClient));
+		try {
+			model.addAttribute("Client", metier.consulterclientmc(""));
+			model.addAttribute("Comptes", metier.consultercompteclient(codeClient));
+		} catch (Exception e) {
+			Clients C = new Clients();
+			C.setException(e.getMessage());
+			model.addAttribute("exc", C);
+		}
+
 		return "Client";
 	}
 
@@ -180,7 +187,13 @@ public class HomeController {
 	@RequestMapping(value = "/rechercher", method = RequestMethod.GET)
 	public String ClientMC(Model model, String mc) {
 
-		model.addAttribute("Client", metier.consulterclientmc(mc));
+		try {
+			model.addAttribute("Client", metier.consulterclientmc(mc));
+		} catch (Exception e) {
+			Clients C = new Clients();
+			C.setException(e.getMessage());
+			model.addAttribute("exc", C);
+		}
 
 		return "Client";
 	}
@@ -189,7 +202,13 @@ public class HomeController {
 	@RequestMapping(value = "/Client", method = RequestMethod.GET)
 	public String homeClient(Model model) {
 
-		model.addAttribute("Client", metier.consulterclientmc("")); // affiche
+		try {
+			model.addAttribute("Client", metier.consulterclientmc(""));
+		} catch (Exception e) {
+			Clients C = new Clients();
+			C.setException(e.getMessage());
+			model.addAttribute("exc", C);
+		} // affiche
 																	// la liste
 																	// complète
 																	// des
@@ -203,7 +222,13 @@ public class HomeController {
 	public String addclient(Model model, Clients c) {
 
 		metier.addclient(c);
-		model.addAttribute("Client", metier.consulterclientmc("")); // affiche
+		try {
+			model.addAttribute("Client", metier.consulterclientmc(""));
+		} catch (Exception e) {
+			Clients C = new Clients();
+			C.setException(e.getMessage());
+			model.addAttribute("exc", C);
+		} // affiche
 																	// la liste
 																	// des
 																	// clients,

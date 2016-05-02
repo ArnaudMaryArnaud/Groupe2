@@ -144,7 +144,7 @@ public class TestMetier {
 	}
 
 	@Test
-	public void testConsulterclientmc() {
+	public void testConsulterclientmc() throws Exception {
 		List<Clients> tabcmc=metier.consulterclientmc("o");
 		assertNotNull(tabcmc.size()>0);
 	}

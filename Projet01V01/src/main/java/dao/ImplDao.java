@@ -126,9 +126,12 @@ public class ImplDao implements InterfaceDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Clients> consulterclientmc(String mc) {
+	public List<Clients> consulterclientmc(String mc) throws Exception{
 		/* méthode qui permet de rechercher dans la liste des clients les clients dont le nom commence par un mot clé */
 		Query query = em.createQuery("from Clients c where c.nomClient like '%"+mc+"'");
+		if (query.getResultList().size() == 0){
+			throw new Exception("Votre recherche ne retourne rien");
+		}
 		return query.getResultList();
 	}
 

@@ -17,11 +17,13 @@ association : HomeController -->
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css"
+	href="<%= request.getContextPath()%>/resources/css/ClientStyle.css">
 <title>Les clients</title>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-	<div class="container-fluid">
+	<nav class="navbar navbar-inverse">
+	<div class="container-fluname">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<a class="navbar-brand" href="home">Projet Banque Groupe 2</a>
@@ -29,12 +31,16 @@ association : HomeController -->
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
+			name="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="Compte">Compte </a></li>
+				<li><a href="Compte">Compte</a></li>
 				<li><a href="Employe">Employe</a></li>
 				<li class=active><a href="Client">Client<span
 						class="sr-only">(current)</span></a></li>
+						</ul>
+			<ul class="nav navbar-nav navbar-right">
+					<li><a href="j_spring_security_logout">Déconnexion</a></li>
+				</ul>
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
@@ -73,7 +79,7 @@ association : HomeController -->
 							name="dateNaissance" type="text" placeholder="Date de naissance"></td>
 						<td><input class="form-control" id="codePostal"
 							name="codePostal" type="text" placeholder="Code Postal"></td>
-						<td><button type="submit" class="btn btn-success">Enregistrer
+						<td><button type="submit" class="btn btn-primary">Enregistrer
 								client</button></td>
 					</tr>
 				</table>
@@ -88,24 +94,24 @@ association : HomeController -->
 				<label for="mc">Mot Clé</label> <input type="text"
 					class="form-control" id="mc" name="mc" placeholder="mot-clé">
 
-				<button type="submit" class="btn btn-success">Rechercher</button>
-
+				<button type="submit" class="btn btn-primary">Rechercher</button>
+             <span class="exception">${exc.exception }</span>
 			</form>
-
+			
 			</br>
 			<!-- Nom des champs de la table -->
 
 			<h2>Liste des clients</h2>
 
-			<div class="table table-striped, container-fluid">
+			<div class="container-fluid">
 
-				<table class="table">
+				<table class="table table-striped">
 
-					<th class="success">Code client</th>
-					<th class="success">Nom</th>
-					<th class="success">Prénom</th>
-					<th class="success">Date de naissance</th>
-					<th class="success">Code postal</th>
+					<th class="primary">Code client</th>
+					<th class="primary">Nom</th>
+					<th class="primary">Prénom</th>
+					<th class="primary">Date de naissance</th>
+					<th class="primary">Code postal</th>
 
 					<!-- contenu de la table Clients -->
 
@@ -126,7 +132,7 @@ association : HomeController -->
 
 			<h2>Afficher les comptes pour un client</h2>
 
-			<div class="table table-striped, container-fluid">
+			<div class="container-fluid">
 
 				<form action="affichercompteCli.do" method="">
 
@@ -135,11 +141,11 @@ association : HomeController -->
 						<c:forEach items="${Client}" var="cl">
 							<option value="${cl.codeClient}">${cl.nomClient}</option>
 						</c:forEach>
-					</select> <input type="submit" value="affichercomptes" />
+					</select><button type="submit" class="btn btn-primary">Afficher comptes</button>
 
 				</form>
 				<table class="table table-striped">
-					<tr class="success">
+					<tr class="primary">
 						<th>Numéro de compte</th>
 						<th>Date de création</th>
 						<th>Solde</th>

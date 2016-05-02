@@ -32,6 +32,6 @@ public interface InterfaceDao {
 	public List<Employe> consulteremployes();
 	public List<Groupe> consultergroupes();
 	public List<Employe> consulteremployesgroupe(Long codeGroupe);
-	public List<Clients> consulterclientmc(String mc);
+	public List<Clients> consulterclientmc(String mc) throws Exception;
 	
 }
